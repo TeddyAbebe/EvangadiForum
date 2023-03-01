@@ -8,6 +8,10 @@ const pool = mysql.createPool({
   connectionLimit: 10,
 });
 
+pool.getConnection(function (err, connection) {
+  console.log("DataBase Connected!");
+});
+
 let registration = `CREATE TABLE if not exists registration(
     user_id int auto_increment,
     user_name varchar(255) not null,
@@ -67,6 +71,4 @@ pool.query(answer, (err, results) => {
   console.log("answer table created");
 });
 
-pool.getConnection(function (err, connection) {
-  console.log("DataBase Connected!");
-});
+module.exports = pool;
